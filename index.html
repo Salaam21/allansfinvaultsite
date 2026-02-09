@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Allan's Fin Vault – Simple, Private Money Tracker</title>
+    <meta name="description" content="Allan's Fin Vault is a simple, offline-first finance tracker that keeps your money data on your device, with optional Google backup that you control." />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Allan's Fin Vault – Simple, Private Money Tracker" />
+    <meta property="og:description" content="Track expenses and savings in a clean, distraction‑free app that does not collect your personal data." />
+
+    <!-- Use the Allan's Fin Vault app icon everywhere -->
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/icon.jpg" />
+    <link rel="icon" type="image/jpeg" sizes="32x32" href="./assets/icon.jpg" />
+    <link rel="icon" type="image/jpeg" sizes="16x16" href="./assets/icon.jpg" />
+    <link rel="icon" href="./assets/icon.jpg" />
+    <link rel="manifest" href="./favicon_io/site.webmanifest" />
+
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
+
+        :root {
+            --color-bg: #0b1020;
+            --color-bg-soft: #151b2f;
+            --color-accent: #38d996;
+            --color-accent-soft: rgba(56, 217, 150, 0.08);
+            --color-text: #f7fafc;
+            --color-text-muted: #a0aec0;
+            --color-border: #252c45;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top left, #182749 0, #050814 55%, #02030a 100%);
+            color: var(--color-text);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            backdrop-filter: blur(18px);
+            background: linear-gradient(to bottom, rgba(5, 8, 20, 0.96), rgba(5, 8, 20, 0.84));
+            border-bottom: 1px solid rgba(37, 44, 69, 0.9);
+        }
+
+        .nav-inner {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.65rem;
+        }
+
+        .brand-mark {
+            width: 36px;
+            height: 36px;
+            border-radius: 12px;
+            background: radial-gradient(circle at 20% 0, #4df1b0, #1c8057 45%, #07131a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #041014;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.7), 0 18px 40px rgba(0, 0, 0, 0.7);
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-name {
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            font-size: 1.1rem;
+        }
+
+        .brand-tagline {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: var(--color-text-muted);
+            letter-spacing: 0.14em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.75rem;
+            font-size: 0.85rem;
+        }
+
+        .nav-links a {
+            color: var(--color-text-muted);
+        }
+
+        .nav-links a:hover {
+            color: var(--color-accent);
+        }
+
+        .nav-cta {
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .nav-cta {
+                display: inline-flex;
+            }
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.35rem;
+            padding: 0.6rem 1.2rem;
+            border-radius: 999px;
+            border: 1px solid transparent;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease, border-color 120ms ease, color 120ms ease;
+            background: var(--color-accent);
+            color: #021008;
+            box-shadow: 0 12px 30px rgba(56, 217, 150, 0.28);
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 16px 40px rgba(56, 217, 150, 0.32);
+            background: #47f0a8;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--color-text);
+            border-color: rgba(148, 163, 184, 0.6);
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--color-accent);
+            background: rgba(56, 217, 150, 0.04);
+            box-shadow: 0 10px 26px rgba(0, 0, 0, 0.5);
+        }
+
+        main {
+            flex: 1;
+        }
+
+        .section {
+            padding: 3.5rem 1.5rem;
+        }
+
+        .hero {
+            max-width: 1080px;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .hero-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.35rem 0.8rem;
+            border-radius: 999px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            border: 1px solid rgba(148, 163, 184, 0.5);
+            background: rgba(11, 16, 32, 0.7);
+            color: var(--color-text-muted);
+            margin-bottom: 1.25rem;
+        }
+
+        .hero-label-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 999px;
+            background: var(--color-accent);
+            box-shadow: 0 0 0 5px rgba(56, 217, 150, 0.3);
+        }
+
+        .hero-title {
+            font-size: 2.25rem;
+            line-height: 1.15;
+            letter-spacing: 0.01em;
+            margin: 0 0 0.9rem;
+        }
+
+        @media (min-width: 768px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+        }
+
+        .hero-title-accent {
+            color: var(--color-accent);
+        }
+
+        .hero-subtitle {
+            font-size: 0.95rem;
+            color: var(--color-text-muted);
+            max-width: 32rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-badge {
+            padding: 0.3rem 0.75rem;
+            border-radius: 999px;
+            background: rgba(26, 32, 56, 0.9);
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            font-size: 0.7rem;
+            color: var(--color-text-muted);
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .hero-footnote {
+            font-size: 0.7rem;
+            color: var(--color-text-muted);
+        }
+
+        .section-inner {
+            max-width: 1080px;
+            margin: 0 auto;
+        }
+
+        .section-heading {
+            margin-bottom: 1.75rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .section-kicker {
+            font-size: 0.75rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--color-text-muted);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin: 0;
+        }
+
+        .section-description {
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+            max-width: 30rem;
+        }
+
+        .grid {
+            display: grid;
+            gap: 1.1rem;
+        }
+
+        @media (min-width: 768px) {
+            .grid-3 {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+
+        .card {
+            background: rgba(15, 23, 42, 0.96);
+            border-radius: 1.2rem;
+            border: 1px solid var(--color-border);
+            padding: 1rem 1.1rem;
+        }
+
+        .card-quiet {
+            background: rgba(10, 16, 33, 0.96);
+        }
+
+        .card-title {
+            font-size: 0.9rem;
+            margin: 0 0 0.25rem;
+        }
+
+        .card-text {
+            font-size: 0.78rem;
+            color: var(--color-text-muted);
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.25rem 0.6rem;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.5);
+            font-size: 0.68rem;
+            color: var(--color-text-muted);
+        }
+
+        .privacy-row {
+            display: grid;
+            gap: 1.25rem;
+        }
+
+        @media (min-width: 900px) {
+            .privacy-row {
+                grid-template-columns: 1.2fr 1fr;
+                align-items: center;
+            }
+        }
+
+        .privacy-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .privacy-list li {
+            display: flex;
+            gap: 0.6rem;
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+            padding: 0.4rem 0;
+        }
+
+        .privacy-bullet {
+            width: 0.45rem;
+            height: 0.45rem;
+            margin-top: 0.35rem;
+            border-radius: 999px;
+            background: var(--color-accent);
+        }
+
+        .download-row {
+            text-align: center;
+        }
+
+        .download-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (min-width: 640px) {
+            .download-buttons {
+                flex-direction: row;
+            }
+        }
+
+        .store-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.55rem 1.15rem;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.4);
+            background: rgba(10, 16, 33, 0.96);
+            color: var(--color-text);
+            font-size: 0.75rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .store-label {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: var(--color-text-muted);
+        }
+
+        .store-name {
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .download-note {
+            margin-top: 0.75rem;
+            font-size: 0.75rem;
+            color: var(--color-text-muted);
+        }
+
+        footer {
+            border-top: 1px solid rgba(37, 44, 69, 0.9);
+            padding: 1.5rem 1.5rem 2rem;
+            background: #040713;
+        }
+
+        .footer-inner {
+            max-width: 1080px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            font-size: 0.75rem;
+            color: var(--color-text-muted);
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .footer-links a {
+            color: var(--color-text-muted);
+        }
+
+        .footer-links a:hover {
+            color: var(--color-accent);
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <header class="nav">
+            <div class="nav-inner">
+                <a href="#top" class="brand">
+                    <div class="brand-mark">A</div>
+                    <div class="brand-text">
+                        <span class="brand-name">Allan's Fin Vault</span>
+                        <span class="brand-tagline">Private money tracker</span>
+                    </div>
+                </a>
+                <nav class="nav-links">
+                    <a href="#how-it-works">How it works</a>
+                    <a href="#features">Features</a>
+                    <a href="#privacy">Privacy</a>
+                    <a href="#download">Download</a>
+                </nav>
+                <a href="#download" class="nav-cta btn btn-outline">Get the app</a>
+            </div>
+        </header>
+
+        <main id="top">
+            <section class="section">
+                <div class="hero">
+                    <div>
+                        <div class="hero-label">
+                            <span class="hero-label-dot"></span>
+                            <span>Made to be simple – and private</span>
+                        </div>
+                        <h1 class="hero-title">
+                            A calmer way to
+                            <span class="hero-title-accent">see your money</span>.
+                        </h1>
+                        <p class="hero-subtitle">
+                            Allan's Fin Vault is a no‑drama finance app: track expenses, see where your money goes, and plan your goals – all stored on
+                            your device, with optional Google backup you trigger yourself.
+                        </p>
+                        <div class="hero-badges">
+                            <span class="hero-badge">No accounts to create</span>
+                            <span class="hero-badge">No ads, no tracking</span>
+                            <span class="hero-badge">Optional Google backup</span>
+                        </div>
+                        <div class="hero-actions">
+                            <a href="#download" class="btn">Download for Android</a>
+                            <a href="privacy-policy.html" class="btn btn-outline">Read privacy policy</a>
+                        </div>
+                        <p class="hero-footnote">
+                            Totally free to use. Your numbers stay on your device unless you choose to back them up.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="how-it-works">
+                <div class="section-inner">
+                    <div class="section-heading">
+                        <span class="section-kicker">How it works</span>
+                        <h2 class="section-title">Three simple pieces that cover your basics.</h2>
+                        <p class="section-description">
+                            Allan's Fin Vault borrows the good parts of budgeting tools – without forcing you into subscriptions or cloud accounts.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-3">
+                        <div class="card">
+                            <p class="pill">01 · Capture</p>
+                            <h3 class="card-title">Log what you spend and save</h3>
+                            <p class="card-text">
+                                Quickly add expenses and income with simple categories. No complex setup, no “pro” version – just see what is really going
+                                in and out.
+                            </p>
+                        </div>
+                        <div class="card">
+                            <p class="pill">02 · Organise</p>
+                            <h3 class="card-title">Group by goals that matter</h3>
+                            <p class="card-text">
+                                Create custom goals – from “Emergency fund” to “New laptop” – and assign spending or saving towards them so you always
+                                know your progress.
+                            </p>
+                        </div>
+                        <div class="card card-quiet">
+                            <p class="pill">03 · Review</p>
+                            <h3 class="card-title">See the story in your numbers</h3>
+                            <p class="card-text">
+                                Clean summaries by month and by goal show you patterns at a glance, without confusing charts or hidden paywalls.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="features">
+                <div class="section-inner">
+                    <div class="section-heading">
+                        <span class="section-kicker">Features</span>
+                        <h2 class="section-title">Built for everyday money, not Wall Street.</h2>
+                        <p class="section-description">
+                            A small set of focused tools that actually get used, instead of a dashboard full of switches you never touch.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-3">
+                        <div class="card">
+                            <h3 class="card-title">Daily tracker</h3>
+                            <p class="card-text">
+                                Add expenses in seconds, tag them, and see totals by day, week, and month so you always know the basics.
+                            </p>
+                        </div>
+                        <div class="card">
+                            <h3 class="card-title">Goal envelopes</h3>
+                            <p class="card-text">
+                                Create “vaults” for things you care about – bills, savings, or big purchases – and watch them fill up over time.
+                            </p>
+                        </div>
+                        <div class="card">
+                            <h3 class="card-title">Works offline</h3>
+                            <p class="card-text">
+                                No signal? No problem. Allan's Fin Vault works fully offline; your data is stored locally on your phone.
+                            </p>
+                        </div>
+                        <div class="card">
+                            <h3 class="card-title">Optional Google backup</h3>
+                            <p class="card-text">
+                                When you choose to, you can connect your Google account to save an encrypted backup to your own Google Drive – only when
+                                you tap “Back up”.
+                            </p>
+                        </div>
+                        <div class="card">
+                            <h3 class="card-title">No sign‑up wall</h3>
+                            <p class="card-text">
+                                Use the app straight away. No email forms, no creating an account with us, and nothing to confirm.
+                            </p>
+                        </div>
+                        <div class="card">
+                            <h3 class="card-title">Clean, calm design</h3>
+                            <p class="card-text">
+                                Dark theme by default, soft colours, and typography tuned so your numbers are easy to read without feeling noisy.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="privacy">
+                <div class="section-inner">
+                    <div class="section-heading">
+                        <span class="section-kicker">Privacy first</span>
+                        <h2 class="section-title">Your data stays with you.</h2>
+                        <p class="section-description">
+                            The short version: Allan's Fin Vault does not collect or sell your personal finance data. The app keeps everything on your
+                            device unless you choose to back it up to your own Google Drive.
+                        </p>
+                    </div>
+
+                    <div class="privacy-row">
+                        <div>
+                            <ul class="privacy-list">
+                                <li>
+                                    <span class="privacy-bullet"></span>
+                                    <span><strong>No account with us:</strong> you do not create an Allan's Fin Vault account and we do not see your transactions.</span>
+                                </li>
+                                <li>
+                                    <span class="privacy-bullet"></span>
+                                    <span><strong>No analytics or ads:</strong> we do not run in‑app advertising, tracking pixels, or analytics that identify you.</span>
+                                </li>
+                                <li>
+                                    <span class="privacy-bullet"></span>
+                                    <span><strong>Google is only for backup:</strong> when you turn it on, Google is used purely so you can store a backup file in your own Drive.</span>
+                                </li>
+                                <li>
+                                    <span class="privacy-bullet"></span>
+                                    <span><strong>You stay in control:</strong> you can disconnect Google backup at any time and delete any backup files from your Drive.</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card card-quiet">
+                            <p class="pill">Need the details?</p>
+                            <h3 class="card-title">Play Store privacy policy ready</h3>
+                            <p class="card-text">
+                                We provide a full written privacy policy that explains exactly what the app does and does not do with your data, including
+                                how Google Drive is used for optional backups. You can read the full text any time on this site.
+                            </p>
+                            <p class="card-text" style="margin-top: 0.6rem;">
+                                <a href="privacy-policy.html">Open the full privacy policy</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="download">
+                <div class="section-inner download-row">
+                    <div class="section-heading" style="align-items: center; text-align: center;">
+                        <span class="section-kicker">Download</span>
+                        <h2 class="section-title">Start tracking in a few taps.</h2>
+                        <p class="section-description">
+                            Install Allan's Fin Vault from Google Play. Backups and privacy options are clearly explained in‑app so you always know what is
+                            happening.
+                        </p>
+                    </div>
+
+                    <div class="download-buttons">
+                        <!-- Replace the href below with your actual Play Store link when ready -->
+                        <a href="#" target="_blank" rel="noopener noreferrer" class="store-button">
+                            <div>
+                                <div class="store-label">Get it on</div>
+                                <div class="store-name">Google Play</div>
+                            </div>
+                        </a>
+                        <span class="download-note">iOS and other platforms may be added later.</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="footer-inner">
+                <div>© <span id="year"></span> Allan's Fin Vault. All rights reserved.</div>
+                <div class="footer-links">
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms-and-conditions.html">Terms &amp; Conditions</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Keep the year in the footer up to date without requiring any build tools.
+        (function () {
+            var span = document.getElementById("year");
+            if (span) {
+                span.textContent = new Date().getFullYear();
+            }
+        })();
+    </script>
+</body>
+</html>

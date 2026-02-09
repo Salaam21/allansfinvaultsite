@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Terms and Conditions – Allan's Fin Vault</title>
+    <meta name="description" content="Terms and Conditions for Allan's Fin Vault. Learn your responsibilities, how data is handled, and how Google is used only for optional backups." />
+    <meta name="robots" content="index, follow" />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="./favicon_io/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon_io/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon_io/favicon-16x16.png" />
+    <link rel="icon" href="./favicon.ico" />
+    <link rel="manifest" href="./favicon_io/site.webmanifest" />
+
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
+
+        :root {
+            --bg: #050814;
+            --bg-soft: #0f172a;
+            --border: #1f2937;
+            --accent: #38d996;
+            --text: #f9fafb;
+            --muted: #9ca3af;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top left, #19223f 0, #050814 52%, #02040c 100%);
+            color: var(--text);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        header {
+            padding: 1.25rem 1.5rem 0.75rem;
+        }
+
+        .header-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: var(--text);
+        }
+
+        .brand-mark {
+            width: 30px;
+            height: 30px;
+            border-radius: 10px;
+            background: radial-gradient(circle at 20% 0, #4df1b0, #1c8057 45%, #07131a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #020b08;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-name {
+            font-weight: 600;
+            font-size: 0.98rem;
+        }
+
+        .brand-tagline {
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: var(--muted);
+        }
+
+        .back-link {
+            font-size: 0.75rem;
+            color: var(--muted);
+        }
+
+        main {
+            padding: 0 1.5rem 2.5rem;
+        }
+
+        .layout {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero {
+            text-align: left;
+            padding: 2.25rem 0 1.5rem;
+        }
+
+        .hero-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.3rem 0.8rem;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.5);
+            background: rgba(15, 23, 42, 0.9);
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 0.9rem;
+        }
+
+        .hero-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background: var(--accent);
+            box-shadow: 0 0 0 4px rgba(56, 217, 150, 0.25);
+        }
+
+        .hero-title {
+            font-size: 2.1rem;
+            margin: 0 0 0.4rem;
+        }
+
+        .hero-subtitle {
+            font-size: 0.96rem;
+            max-width: 32rem;
+            color: var(--muted);
+        }
+
+        .hero-meta {
+            margin-top: 0.7rem;
+            font-size: 0.75rem;
+            color: var(--muted);
+        }
+
+        .summary {
+            margin: 1.75rem 0 2.25rem;
+            padding: 1.3rem 1.3rem 1.1rem;
+            border-radius: 1rem;
+            background: rgba(15, 23, 42, 0.96);
+            border: 1px solid var(--border);
+            font-size: 0.85rem;
+        }
+
+        .summary h2 {
+            margin: 0 0 0.6rem;
+            font-size: 0.9rem;
+        }
+
+        .summary ul {
+            padding-left: 1.1rem;
+            margin: 0.1rem 0 0;
+        }
+
+        .summary li {
+            margin-bottom: 0.25rem;
+        }
+
+        article {
+            background: rgba(5, 8, 20, 0.85);
+            border-radius: 1.1rem;
+            border: 1px solid var(--border);
+            padding: 1.6rem 1.4rem 1.6rem;
+            font-size: 0.88rem;
+            line-height: 1.6;
+        }
+
+        @media (min-width: 768px) {
+            article {
+                padding: 1.9rem 1.9rem 1.8rem;
+            }
+        }
+
+        article h2 {
+            margin-top: 1.4rem;
+            margin-bottom: 0.35rem;
+            font-size: 1.05rem;
+        }
+
+        article h3 {
+            margin-top: 1rem;
+            margin-bottom: 0.25rem;
+            font-size: 0.95rem;
+        }
+
+        article p {
+            margin: 0.25rem 0 0.55rem;
+            color: var(--muted);
+        }
+
+        article ul,
+        article ol {
+            padding-left: 1.1rem;
+            margin: 0.15rem 0 0.5rem;
+            color: var(--muted);
+        }
+
+        article li {
+            margin-bottom: 0.25rem;
+        }
+
+        article strong {
+            color: #e5e7eb;
+            font-weight: 600;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 1.2rem 0 1.1rem;
+        }
+
+        footer {
+            padding: 1.5rem 1.5rem 2rem;
+            border-top: 1px solid var(--border);
+            background: #02040b;
+            font-size: 0.78rem;
+            color: var(--muted);
+        }
+
+        .footer-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-inner">
+            <a href="index.html" class="brand">
+                <div class="brand-mark">A</div>
+                <div class="brand-text">
+                    <span class="brand-name">Allan's Fin Vault</span>
+                    <span class="brand-tagline">Terms &amp; conditions</span>
+                </div>
+            </a>
+            <a href="index.html" class="back-link">Back to landing page</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="layout">
+            <section class="hero">
+                <div class="hero-pill">
+                    <span class="hero-dot"></span>
+                    <span>Plain‑language terms for a simple app</span>
+                </div>
+                <h1 class="hero-title">Terms and Conditions for Allan's Fin Vault</h1>
+                <p class="hero-subtitle">
+                    These Terms and Conditions explain how you can use Allan's Fin Vault and what you are responsible for when you install and use the app.
+                </p>
+                <p class="hero-meta">Last updated: 09 February 2026</p>
+            </section>
+
+            <div class="summary">
+                <h2>Quick summary</h2>
+                <ul>
+                    <li><strong>Free app:</strong> Allan's Fin Vault is provided free for personal use.</li>
+                    <li><strong>Your device, your data:</strong> your finance data stays on your device unless you create your own backups.</li>
+                    <li><strong>No financial guarantees:</strong> the app is a tool, not financial advice.</li>
+                </ul>
+            </div>
+
+            <article>
+                <h2>1. Acceptance of these terms</h2>
+                <p>
+                    By downloading, installing, or using Allan's Fin Vault (“the App”), you agree to be bound by these Terms and Conditions. If you do not agree
+                    with these terms, please do not install or use the App.
+                </p>
+
+                <hr />
+
+                <h2>2. How the app works and your responsibilities</h2>
+                <p>
+                    Allan's Fin Vault is an offline‑first finance tracker. The main database is stored locally on your device and is not automatically sent to
+                    our own servers.
+                </p>
+
+                <h3>2.1 Data loss and backups</h3>
+                <p>You are responsible for keeping your own backups of the data you enter into the App.</p>
+                <ul>
+                    <li>
+                        <strong>Manual backups:</strong> any backup or export feature in the App must be triggered by you. Automatic cloud syncing is not
+                        turned on by default.
+                    </li>
+                    <li>
+                        <strong>Device events:</strong> we are not responsible for data loss caused by lost, stolen, damaged, or reset devices, or from
+                        uninstalling the App.
+                    </li>
+                </ul>
+
+                <h3>2.2 Supported devices and modifications</h3>
+                <p>
+                    Allan's Fin Vault is intended to run on standard, unmodified versions of supported operating systems (for example, Android). We do not
+                    guarantee the App will work correctly on rooted, jailbroken, or heavily modified devices, or on custom ROMs.
+                </p>
+
+                <hr />
+
+                <h2>3. Use of Google services (optional backup)</h2>
+                <p>
+                    The App may offer optional integration with Google services such as Google Sign‑In and Google Drive so that you can store your own backup
+                    file.
+                </p>
+                <ul>
+                    <li>You agree to follow <a href="https://policies.google.com/terms" target="_blank">Google’s Terms of Service</a>.</li>
+                    <li>
+                        Allan's Fin Vault uses your Google account only to create and manage backup files in your Google Drive as requested by you. It does not
+                        manage or access other unrelated files in your Drive.
+                    </li>
+                    <li>We are not responsible for the uptime, availability, or behaviour of Google’s services.</li>
+                </ul>
+
+                <hr />
+
+                <h2>4. Deleting data and account‑related actions</h2>
+                <p>
+                    Allan's Fin Vault does not create an online account with us, and we do not keep your finance data on our own servers. Any “reset”, “clear
+                    data”, or similar option within the App affects only the data stored on your device.
+                </p>
+                <p>
+                    If you have created backup files (for example in your device storage or Google Drive), those files are under your control. You must delete
+                    them yourself if you no longer want them to exist.
+                </p>
+
+                <hr />
+
+                <h2>5. Intellectual property</h2>
+                <p>
+                    The Allan's Fin Vault app, including its name, logo, and visual design, is owned by the developer. You may not use the branding or assets in
+                    a way that suggests your own product is Allan's Fin Vault or is officially endorsed by it, without written permission.
+                </p>
+
+                <hr />
+
+                <h2>6. Disclaimer of warranties</h2>
+                <p>The App is provided on an “AS IS” and “AS AVAILABLE” basis.</p>
+                <ul>
+                    <li>
+                        <strong>No financial advice:</strong> Allan's Fin Vault is a record‑keeping tool. It does not provide financial, tax, or investment
+                        advice, and we are not responsible for financial decisions you make based on information shown in the App.
+                    </li>
+                    <li>
+                        <strong>No guarantee of error‑free operation:</strong> although the App is developed with care, we do not guarantee it will be free from
+                        bugs, interruptions, or errors.
+                    </li>
+                </ul>
+
+                <hr />
+
+                <h2>7. Changes to these terms</h2>
+                <p>
+                    We may update these Terms and Conditions from time to time. When we do, we will change the “Last updated” date at the top of this page. By
+                    continuing to use the App after changes are published, you accept the updated terms.
+                </p>
+
+                <hr />
+
+                <h2>8. Contact</h2>
+                <p>
+                    If you have questions about these Terms and Conditions or about Allan's Fin Vault in general, you can contact the developer using the
+                    contact details listed on the Allan's Fin Vault page in the Google Play Store.
+                </p>
+            </article>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-inner">
+            <div>© <span id="year"></span> Allan's Fin Vault. All rights reserved.</div>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="privacy-policy.html">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            var span = document.getElementById("year");
+            if (span) {
+                span.textContent = new Date().getFullYear();
+            }
+        })();
+    </script>
+</body>
+</html>
