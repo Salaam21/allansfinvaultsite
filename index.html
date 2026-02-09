@@ -454,6 +454,70 @@
         .footer-links a:hover {
             color: var(--color-accent);
         }
+
+        /* App showcase – feature images */
+        .showcase {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 3rem;
+        }
+
+        .showcase-grid {
+            display: grid;
+            gap: 1.25rem;
+            grid-template-columns: 1fr;
+        }
+
+        @media (min-width: 640px) {
+            .showcase-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 900px) {
+            .showcase-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .showcase-item {
+            border-radius: 1.2rem;
+            overflow: hidden;
+            border: 1px solid var(--color-border);
+            background: rgba(15, 23, 42, 0.6);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .showcase-item img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            vertical-align: middle;
+        }
+
+        .showcase-caption {
+            padding: 0.9rem 1rem;
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+            text-align: center;
+        }
+
+        .features-visual {
+            margin-top: 1.5rem;
+        }
+
+        .feature-img-wrap {
+            border-radius: 1rem;
+            overflow: hidden;
+            border: 1px solid var(--color-border);
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-img-wrap img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -468,6 +532,7 @@
                     </div>
                 </a>
                 <nav class="nav-links">
+                    <a href="#see-the-app">See the app</a>
                     <a href="#how-it-works">How it works</a>
                     <a href="#features">Features</a>
                     <a href="#privacy">Privacy</a>
@@ -505,6 +570,32 @@
                         <p class="hero-footnote">
                             Totally free to use. Your numbers stay on your device unless you choose to back them up.
                         </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="see-the-app" style="padding-top: 0;">
+                <div class="showcase">
+                    <div class="section-heading" style="margin-bottom: 1.5rem;">
+                        <span class="section-kicker">See the app</span>
+                        <h2 class="section-title">Track, budget, and reach your goals.</h2>
+                        <p class="section-description">
+                            A clean dashboard, clear numbers, and controls that stay in your hands.
+                        </p>
+                    </div>
+                    <div class="showcase-grid">
+                        <div class="showcase-item">
+                            <img src="./assets/finvaultpic.png" alt="Allan's Fin Vault – Dashboard and balance" loading="lazy" />
+                            <p class="showcase-caption">Dashboard – balance, spending insights, and daily inspiration</p>
+                        </div>
+                        <div class="showcase-item">
+                            <img src="./assets/finvault pic2.png" alt="Allan's Fin Vault – Goals and budgets" loading="lazy" />
+                            <p class="showcase-caption">Goals &amp; budgets – set targets and track progress</p>
+                        </div>
+                        <div class="showcase-item">
+                            <img src="./assets/finvaultpic3.png" alt="Allan's Fin Vault – Transactions and categories" loading="lazy" />
+                            <p class="showcase-caption">Transactions – log income, expenses, and savings by category</p>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -561,13 +652,37 @@
                         <div class="card">
                             <h3 class="card-title">Daily tracker</h3>
                             <p class="card-text">
-                                Add expenses in seconds, tag them, and see totals by day, week, and month so you always know the basics.
+                                Add income, expenses, and savings in seconds with categories. See totals by day, week, and month so you always know the basics.
                             </p>
                         </div>
                         <div class="card">
-                            <h3 class="card-title">Goal envelopes</h3>
+                            <h3 class="card-title">Goals with targets</h3>
                             <p class="card-text">
-                                Create “vaults” for things you care about – bills, savings, or big purchases – and watch them fill up over time.
+                                Set a target amount and deadline for each goal. Track progress, add savings anytime, and see how much to save per month to stay on track.
+                            </p>
+                        </div>
+                        <div class="card">
+                            <h3 class="card-title">Category budgets</h3>
+                            <p class="card-text">
+                                Set a budget limit per category and period. See spent vs limit with progress bars and get a clear view of what’s left to spend.
+                            </p>
+                        </div>
+                        <div class="card">
+                            <h3 class="card-title">Bills &amp; reminders</h3>
+                            <p class="card-text">
+                                Add bills with due dates and recurrence. Get in‑app and notification reminders so you never miss a payment.
+                            </p>
+                        </div>
+                        <div class="card">
+                            <h3 class="card-title">Daily financial wisdom</h3>
+                            <p class="card-text">
+                                Short tips from experts (Buffett, Babylon, and more) on the dashboard. Tap through for more wisdom and optional notifications.
+                            </p>
+                        </div>
+                        <div class="card">
+                            <h3 class="card-title">Spending insights</h3>
+                            <p class="card-text">
+                                See where your money goes with spending by category, trends, and a simple chart. Pinned goals and bills live right on the dashboard.
                             </p>
                         </div>
                         <div class="card">
@@ -579,8 +694,7 @@
                         <div class="card">
                             <h3 class="card-title">Optional Google backup</h3>
                             <p class="card-text">
-                                When you choose to, you can connect your Google account to save an encrypted backup to your own Google Drive – only when
-                                you tap “Back up”.
+                                When you choose to, you can connect your Google account to save an encrypted backup to your own Google Drive – only when you tap “Back up”.
                             </p>
                         </div>
                         <div class="card">
